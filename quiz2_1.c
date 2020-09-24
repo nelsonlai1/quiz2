@@ -18,7 +18,7 @@ bool is_ascii(const char str[], size_t size)
         if ((payload & PACKED_BYTE(0x80)) == 0) {
             uint64_t a = payload + PACKED_BYTE(128 - 'a');
             uint64_t z = payload + PACKED_BYTE(128 - 'z' - 1);
-            if ((a ^ z) & PACKED_BYTE(0x80) == 0)
+            if ((a ^ z) & PACKED_BYTE(0x80) ^ PACKED_BYTE(0x80))
                 return false;
         }
         i += 8;
@@ -32,7 +32,7 @@ bool is_ascii(const char str[], size_t size)
 }
 int main() 
 {
-    char *str = "abcxyzABCXYZ";
+    char *str = "abcxyz!@ABCXYZ";
     printf("%s\n", is_ascii(str, strlen(str)) ? "true" : "false");
     return 0;
 }
