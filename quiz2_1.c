@@ -24,7 +24,7 @@ bool is_ascii(const char str[], size_t size)
         i += 8;
     }
     while (i < size) {
-        if ((str[i] & 0x5F) < 65 || (str[i] & 0x5F) > 90)
+        if ((str[i] | 0x20) < 97 || (str[i] | 0x20) > 122)
             return false;
         i++;
     }
