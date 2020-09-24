@@ -14,7 +14,7 @@ bool is_ascii(const char str[], size_t size)
     while ((i + 8) <= size) {
         uint64_t payload;
         memcpy(&payload, str + i, 8);
-        payload |= PACKED_BYTE(0x220);
+        payload |= PACKED_BYTE(0x20);
         if ((payload & PACKED_BYTE(0x80)) == 0) {
             uint64_t a = payload + PACKED_BYTE(128 - 'a');
             uint64_t z = payload + PACKED_BYTE(128 - 'z' - 1);
